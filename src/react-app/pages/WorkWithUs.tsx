@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Calendar, Megaphone, Star, CheckCircle, Send, Building2, Music, Users } from 'lucide-react';
+import { Megaphone, Star, CheckCircle, Send, Building2, Music, Users } from 'lucide-react';
 import Navigation from '@/react-app/components/Navigation';
 import Footer from '@/react-app/components/Footer';
 

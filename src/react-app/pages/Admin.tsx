@@ -1113,15 +1113,60 @@ function EventForm({ formData, setFormData, venues, onSubmit, onCancel, isEditin
 
         <div className="space-y-2">
           <label className="block text-sm font-semibold text-gray-300">
-            Image URL
+            Event Image
           </label>
-          <input
-            type="url"
-            value={formData.image_url}
-            onChange={(e) => handleInputChange('image_url', e.target.value)}
-            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-sm"
-            placeholder="https://example.com/image.jpg"
-          />
+          <div className="flex gap-3">
+            <input
+              type="url"
+              value={formData.image_url}
+              onChange={(e) => handleInputChange('image_url', e.target.value)}
+              className="flex-1 px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-sm"
+              placeholder="Image URL or upload file"
+            />
+              <label className="px-4 py-3 bg-gradient-to-r from-blue-600/50 to-cyan-500/50 border border-blue-500/30 rounded-xl hover:border-blue-400/50 cursor-pointer transition-all flex items-center relative overflow-hidden">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const label = e.currentTarget.parentElement;
+                      label?.classList.add('uploading');
+                      try {
+                        const formData = new FormData();
+                        formData.append('file', file);
+                        const response = await fetch('/api/events/upload-image', {
+                          method: 'POST',
+                          body: formData
+                        });
+                        
+                        if (!response.ok) throw new Error('Upload failed');
+                        
+                        const { url } = await response.json();
+                        handleInputChange('image_url', url);
+                        label?.classList.add('upload-success');
+                        setTimeout(() => label?.classList.remove('upload-success'), 2000);
+                      } catch (error) {
+                        label?.classList.add('upload-error');
+                        setTimeout(() => label?.classList.remove('upload-error'), 2000);
+                        console.error('Upload error:', error);
+                      } finally {
+                        label?.classList.remove('uploading');
+                      }
+                    }
+                  }}
+                  className="hidden"
+                />
+                <span className="text-sm font-medium text-blue-300 relative z-10">Upload</span>
+                <span className="absolute inset-0 bg-blue-600/50 transition-all duration-300 scale-x-0 origin-left uploading:scale-x-100"></span>
+                <span className="absolute inset-0 bg-emerald-600/80 opacity-0 transition-opacity duration-300 upload-success:opacity-100 flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">✓ Uploaded</span>
+                </span>
+                <span className="absolute inset-0 bg-red-600/80 opacity-0 transition-opacity duration-300 upload-error:opacity-100 flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">Upload Failed</span>
+                </span>
+              </label>
+          </div>
         </div>
 
         <div className="space-y-2">

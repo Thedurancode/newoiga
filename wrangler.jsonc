@@ -9,13 +9,21 @@
   },
   "upload_source_maps": true,
   "assets": {
+    "directory": "./dist",
     "not_found_handling": "single-page-application",
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "019889c0-e36b-78be-8a97-5e6e4fda143a",
-      "database_id": "019889c0-e36b-78be-8a97-5e6e4fda143a",
+      "database_id": "c66eb3f1-448f-423f-9451-434323040112",
     },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "EVENT_IMAGES",
+      "bucket_name": "event-images",
+      "preview_bucket_name": "event-images-preview"
+    }
   ],
 }
