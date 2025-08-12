@@ -60,20 +60,18 @@ export default function Home() {
       {/* Hero Section */}
       <div className="relative overflow-hidden min-h-[70vh] flex items-center">
         {/* Video Background */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-          onLoadedData={() => console.log('Video loaded')}
-          onError={() => console.log('Video error')}
-        >
-          <source src="https://videos.pexels.com/video-files/3796511/3796511-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-        </video>
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <iframe
+            src="https://www.youtube.com/embed/VNoq4LR1UzE?autoplay=1&mute=1&loop=1&playlist=VNoq4LR1UzE&start=40&controls=0&modestbranding=1"
+            className="absolute inset-0 w-full h-full object-cover scale-[2] md:scale-125 origin-center"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+        </div>
         
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black opacity-40"></div>
+        {/* Dark overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30"></div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
           <div className="text-center">
