@@ -12,11 +12,17 @@
     "directory": "./dist",
     "not_found_handling": "single-page-application",
   },
+  "kv_namespaces": [
+    {
+      "binding": "ASSETS",
+      "id": "assets"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "019889c0-e36b-78be-8a97-5e6e4fda143a",
-      "database_id": "c66eb3f1-448f-423f-9451-434323040112",
+      "database_name": "newoiga-db",
+      "database_id": "163667bd-0a8e-4919-9f51-ad5e4590e678",
     },
   ],
   "r2_buckets": [

@@ -1,4 +1,4 @@
-import { Hono } from "hono";
+import { Hono, type Context } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
 import { v4 as uuidv4 } from 'uuid';
@@ -406,6 +406,11 @@ app.get("/api/events/:id", async (c) => {
 // The plugin might expose them via a fetch function or similar.
 // For now, let's assume a common pattern where the plugin makes assets available.
 // If this doesn't work, we'll need to consult the plugin's documentation for asset access.
-app.get('*', serveStatic({ root: './dist', fetch: (path, c) => c.env.ASSETS.fetch(path) }));
+app.get('*', serveStatic({ 
+  root: './dist',
+  getContent: async (path: string, context: Context<{ Bindings: Env }>) => {
+    return (context.env as Env).ASSETS.fetch(path);
+  }
+}));
 
 export default app;

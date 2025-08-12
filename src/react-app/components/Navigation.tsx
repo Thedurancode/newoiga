@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { Calendar, MapPin, Home, Menu, X, Users, Briefcase } from "lucide-react";
+import { Calendar, MapPin, Home, Menu, X, Users, Briefcase, Video } from "lucide-react";
 import { useState } from "react";
 
 export default function Navigation() {
@@ -86,6 +86,17 @@ export default function Navigation() {
               <Briefcase size={20} />
               <span>Work With Us</span>
             </Link>
+            <Link 
+              to="/videos" 
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                isActive('/videos') 
+                  ? 'bg-blue-900/50 text-blue-300' 
+                  : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
+              }`}
+            >
+              <Video size={20} />
+              <span>Videos</span>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -161,6 +172,18 @@ export default function Navigation() {
               >
                 <Briefcase size={20} />
                 <span className="font-medium">Work With Us</span>
+              </Link>
+              <Link 
+                to="/videos" 
+                onClick={closeMobileMenu}
+                className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
+                  isActive('/videos') 
+                    ? 'bg-blue-900/50 text-blue-300' 
+                    : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
+                }`}
+              >
+                <Video size={20} />
+                <span className="font-medium">Videos</span>
               </Link>
             </div>
           </div>

@@ -7,6 +7,7 @@ import EventPage from "@/react-app/pages/Event";
 import AdminPage from "@/react-app/pages/Admin";
 import AboutPage from "@/react-app/pages/About";
 import WorkWithUsPage from "@/react-app/pages/WorkWithUs";
+import VideosPage from "@/react-app/pages/Videos";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/work-with-us" element={<WorkWithUsPage />} />
+        <Route path="/videos" element={<VideosPage />} />
       </Routes>
     </Router>
   );

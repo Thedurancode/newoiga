@@ -4,6 +4,7 @@
 interface WorkerEnv {
   DB: D1Database;
   EVENT_IMAGES: R2Bucket;
+  ASSETS: Fetcher;
 }
 
 export default WorkerEnv;

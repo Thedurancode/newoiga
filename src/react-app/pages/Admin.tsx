@@ -202,9 +202,21 @@ export default function AdminPage() {
         await fetchData();
         setShowCreateVenueForm(false);
         resetVenueForm();
+      } else {
+        try {
+          const errorData = await response.json();
+          console.error('Error creating venue:', errorData);
+          const errorMessage = errorData.error || errorData.message || JSON.stringify(errorData);
+          alert('Error creating venue: ' + errorMessage);
+        } catch (parseError) {
+          console.error('Error parsing error response:', parseError);
+          alert('Error creating venue: Server returned an invalid response');
+        }
       }
     } catch (error) {
       console.error('Error creating venue:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Network error occurred';
+      alert('Error creating venue: ' + errorMessage);
     }
   };
 
