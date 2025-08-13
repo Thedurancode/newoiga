@@ -58,12 +58,12 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden min-h-[70vh] flex items-center -mt-4 md:-mt-5">
+      <div className="relative overflow-hidden min-h-[90vh] md:min-h-[70vh] flex items-center -mt-4 md:-mt-5">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <iframe
             src="https://www.youtube.com/embed/VNoq4LR1UzE?autoplay=1&mute=1&loop=1&playlist=VNoq4LR1UzE&start=40&controls=0&modestbranding=1"
-            className="absolute -top-[20px] md:-top-[10px] left-0 right-0 bottom-0 w-full h-full object-cover scale-[2] md:scale-125 origin-center"
+            className="absolute -top-[30px] md:-top-[10px] left-0 right-0 bottom-0 w-full h-full object-cover scale-[2.2] md:scale-125 origin-center"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -73,26 +73,26 @@ export default function Home() {
         {/* Dark overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30"></div>
         
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 relative z-10">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 md:mb-8">
               Discover Amazing
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"> Events</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto">
               Find the best events and venues in your city. From concerts to conferences, 
               we have everything you need to make your next experience unforgettable.
             </p>
-            <div className="flex justify-center space-x-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:space-x-4">
               <Link 
                 to="/events" 
-                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-200"
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 md:py-3 rounded-lg font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-200 text-center"
               >
                 Browse Events
               </Link>
               <Link 
                 to="/venues" 
-                className="bg-gray-800 text-gray-200 border border-gray-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:bg-gray-700 hover:border-gray-500 transition-all duration-200"
+                className="bg-gray-800 text-gray-200 border border-gray-600 px-8 py-4 md:py-3 rounded-lg font-semibold hover:shadow-lg hover:bg-gray-700 hover:border-gray-500 transition-all duration-200 text-center"
               >
                 Explore Venues
               </Link>
