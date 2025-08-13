@@ -70,11 +70,13 @@ export default function Events() {
         ) : (
           <div className="space-y-6">
             {events.map((event) => (
-              <div 
-                key={event.id} 
-                className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden border border-gray-700"
+              <Link
+                key={event.id}
+                to={`/events/${event.id}`}
+                className="group block"
               >
-                <div className="md:flex">
+                <div className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden border border-gray-700">
+                  <div className="md:flex">
                   <div className="md:w-1/3 h-48 md:h-auto bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
                     {event.image_url ? (
                       <img 
@@ -97,7 +99,7 @@ export default function Events() {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-4">
                           <div>
-                            <h3 className="text-2xl font-bold text-white mb-2 hover:text-blue-400 transition-colors">
+                            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                               {event.title}
                             </h3>
                             
@@ -141,8 +143,9 @@ export default function Events() {
                       </div>
                     </div>
                   </div>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}

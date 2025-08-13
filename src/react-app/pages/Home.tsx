@@ -269,7 +269,7 @@ export default function Home() {
                     </div>
                     
                     <div className="flex-1 p-4 sm:p-6">
-                      <div className="flex flex-col justify-between h-full gap-3">
+                      <div className="flex flex-col h-full">
                         <div>
                           <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-1">
                             {event.title}
@@ -285,12 +285,6 @@ export default function Home() {
                               <Clock size={14} className="mr-2 flex-shrink-0" />
                               <span>{formatDate(event.start_date_time)}</span>
                             </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex justify-end">
-                          <div className="text-blue-400 font-semibold text-sm group-hover:text-blue-300 transition-colors">
-                            View Details →
                           </div>
                         </div>
                       </div>

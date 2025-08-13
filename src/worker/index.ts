@@ -14,8 +14,8 @@ const getBaseUrl = (c: Context) => {
   if (host?.includes('localhost') || host?.includes('127.0.0.1') || host?.includes(':')) {
     return `https://${host}`;
   }
-  // For production, use the workers.dev domain
-  return `https://019889c0-e36b-78be-8a97-5e6e4fda143a.emprezarioinc.workers.dev`;
+  // For production, use the custom domain
+  return `https://oigaevents.com`;
 };
 
 // Helper function to generate unique filename

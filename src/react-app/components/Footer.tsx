@@ -14,7 +14,7 @@ export default function Footer() {
               <img 
                 src="https://mocha-cdn.com/019889c0-e36b-78be-8a97-5e6e4fda143a/OIGA-EVENTS-LOGO.png" 
                 alt="Oiga Events" 
-                className="h-20 w-auto"
+                className="h-16 md:h-20 w-auto"
               />
             </Link>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
