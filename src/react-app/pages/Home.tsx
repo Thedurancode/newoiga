@@ -58,12 +58,12 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden min-h-[70vh] flex items-center -mt-1 md:-mt-px">
+      <div className="relative overflow-hidden min-h-[70vh] flex items-center -mt-4 md:-mt-5">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <iframe
             src="https://www.youtube.com/embed/VNoq4LR1UzE?autoplay=1&mute=1&loop=1&playlist=VNoq4LR1UzE&start=40&controls=0&modestbranding=1"
-            className="absolute -top-[3px] md:top-0 left-0 right-0 bottom-0 w-full h-full object-cover scale-[2] md:scale-125 origin-center"
+            className="absolute -top-[20px] md:-top-[10px] left-0 right-0 bottom-0 w-full h-full object-cover scale-[2] md:scale-125 origin-center"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -73,7 +73,7 @@ export default function Home() {
         {/* Dark overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30"></div>
         
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white mb-6">
               Discover Amazing

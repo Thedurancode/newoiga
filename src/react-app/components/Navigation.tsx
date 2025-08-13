@@ -19,13 +19,13 @@ export default function Navigation() {
   return (
     <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 backdrop-blur-sm bg-gray-900/95">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center py-2">
             <img 
               src="https://mocha-cdn.com/019889c0-e36b-78be-8a97-5e6e4fda143a/OIGA-EVENTS-LOGO.png" 
               alt="Oiga Events" 
-              className="h-20 md:h-24 w-auto"
+              className="h-12 md:h-16 w-auto"
             />
           </Link>
           
