@@ -8,10 +8,12 @@ import AdminPage from "@/react-app/pages/Admin";
 import AboutPage from "@/react-app/pages/About";
 import WorkWithUsPage from "@/react-app/pages/WorkWithUs";
 import VideosPage from "@/react-app/pages/Videos";
+import ScrollToTop from "@/react-app/components/ScrollToTop";
 
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/venues" element={<VenuesPage />} />
