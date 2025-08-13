@@ -59,7 +59,7 @@ export default function Events() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">All Events</h1>
-          <p className="text-xl text-gray-300">Discover amazing events happening near you</p>
+          <p className="text-xl text-gray-300">Discover events happening near you</p>
         </div>
 
         {events.length === 0 ? (
@@ -77,7 +77,7 @@ export default function Events() {
               >
                 <div className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden border border-gray-700">
                   <div className="md:flex">
-                  <div className="md:w-1/3 h-48 md:h-auto bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                  <div className="md:w-1/3 aspect-square bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
                     {event.image_url ? (
                       <img 
                         src={event.image_url} 
