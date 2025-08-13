@@ -432,53 +432,61 @@ export default function AdminPage() {
 
           {/* Stats Cards - Responsive grid */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
-            <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
-              <div className="flex items-center justify-between">
-                <div className="min-w-0 flex-1">
-                  <p className="text-blue-400 font-medium text-xs uppercase tracking-wide truncate">Total Events</p>
-                  <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.totalEvents}</p>
-                </div>
-                <div className="bg-blue-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
-                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+            {stats.totalEvents > 0 && (
+              <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-blue-400 font-medium text-xs uppercase tracking-wide truncate">Total Events</p>
+                    <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.totalEvents}</p>
+                  </div>
+                  <div className="bg-blue-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            <div className="bg-gradient-to-br from-emerald-500/10 to-green-500/10 backdrop-blur-sm border border-emerald-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
-              <div className="flex items-center justify-between">
-                <div className="min-w-0 flex-1">
-                  <p className="text-emerald-400 font-medium text-xs uppercase tracking-wide truncate">Upcoming</p>
-                  <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.upcomingEvents}</p>
-                </div>
-                <div className="bg-emerald-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
-                  <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+            {stats.upcomingEvents > 0 && (
+              <div className="bg-gradient-to-br from-emerald-500/10 to-green-500/10 backdrop-blur-sm border border-emerald-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-emerald-400 font-medium text-xs uppercase tracking-wide truncate">Upcoming</p>
+                    <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.upcomingEvents}</p>
+                  </div>
+                  <div className="bg-emerald-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
-              <div className="flex items-center justify-between">
-                <div className="min-w-0 flex-1">
-                  <p className="text-purple-400 font-medium text-xs uppercase tracking-wide truncate">Featured</p>
-                  <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.featuredEvents}</p>
-                </div>
-                <div className="bg-purple-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
-                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
+            {stats.featuredEvents > 0 && (
+              <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-purple-400 font-medium text-xs uppercase tracking-wide truncate">Featured</p>
+                    <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.featuredEvents}</p>
+                  </div>
+                  <div className="bg-purple-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur-sm border border-orange-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
-              <div className="flex items-center justify-between">
-                <div className="min-w-0 flex-1">
-                  <p className="text-orange-400 font-medium text-xs uppercase tracking-wide truncate">Venues</p>
-                  <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.totalVenues}</p>
-                </div>
-                <div className="bg-orange-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400" />
+            {stats.totalVenues > 0 && (
+              <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur-sm border border-orange-500/20 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:scale-[1.02] transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-orange-400 font-medium text-xs uppercase tracking-wide truncate">Venues</p>
+                    <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1 sm:mt-2">{stats.totalVenues}</p>
+                  </div>
+                  <div className="bg-orange-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0 ml-2">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400" />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -675,15 +683,15 @@ export default function AdminPage() {
                                   Special
                                 </div>
                               )}
-                              {event.price ? (
-                                <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-emerald-900/30 text-emerald-400 border border-emerald-500/30">
-                                  ${event.price}
-                                </div>
-                              ) : (
-                                <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-gray-700/50 text-gray-400 border border-gray-600/50">
-                                  Free
-                                </div>
-                              )}
+                                {event.price ? (
+                                  <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-emerald-900/30 text-emerald-400 border border-emerald-500/30">
+                                    ${event.price}
+                                  </div>
+                                ) : (
+                                  <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-gray-700/50 text-gray-400 border border-gray-600/50">
+                                    Free
+                                  </div>
+                                )}
                               <div className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold ${
                                 new Date(event.start_date_time) > new Date()
                                   ? 'bg-blue-900/30 text-blue-400 border border-blue-500/30'
