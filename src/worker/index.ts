@@ -7,6 +7,17 @@ import type Env from '../../worker-configuration.d.ts';
 
 import { serveStatic } from 'hono/serve-static';
 
+// Helper function to get the correct base URL for images
+const getBaseUrl = (c: Context) => {
+  const host = c.req.header('host');
+  // If it's localhost or contains a port, it's development
+  if (host?.includes('localhost') || host?.includes('127.0.0.1') || host?.includes(':')) {
+    return `https://${host}`;
+  }
+  // For production, use the workers.dev domain
+  return `https://019889c0-e36b-78be-8a97-5e6e4fda143a.emprezarioinc.workers.dev`;
+};
+
 // Helper function to generate unique filename
 const generateUniqueFilename = (originalName?: string) => {
   if (!originalName) return `${uuidv4()}`;
@@ -268,7 +279,7 @@ app.post("/api/events/upload-image", async (c) => {
       }
     });
 
-    const imageUrl = `https://${c.req.header('host')}/api/events/images/${filename}`;
+    const imageUrl = `${getBaseUrl(c)}/api/events/images/${filename}`;
     return c.json({ url: imageUrl });
   } catch (error) {
     console.error('File upload error:', error);
@@ -306,7 +317,7 @@ app.post("/api/events", zValidator("json", CreateEventSchema), async (c) => {
         contentType: data.image_file.type
       }
     });
-    imageUrl = `https://${c.req.header('host')}/api/events/images/${filename}`;
+    imageUrl = `${getBaseUrl(c)}/api/events/images/${filename}`;
   }
   
   const result = await db.prepare(`
@@ -352,7 +363,7 @@ app.put("/api/events/:id", zValidator("json", UpdateEventSchema), async (c) => {
         contentType: data.image_file.type
       }
     });
-    imageUrl = `https://${c.req.header('host')}/api/events/images/${filename}`;
+    imageUrl = `${getBaseUrl(c)}/api/events/images/${filename}`;
   }
   
   // Merge provided data with existing data to ensure all fields are present
@@ -391,7 +402,10 @@ app.put("/api/events/:id", zValidator("json", UpdateEventSchema), async (c) => {
     return c.json({ success: true, changes: result.meta.changes });
   } catch (error) {
     console.error('Error in update event endpoint:', error);
-    return c.json({ error: 'Internal server error', details: error.message }, 500);
+    return c.json({ 
+      error: 'Internal server error', 
+      details: error instanceof Error ? error.message : 'Unknown error' 
+    }, 500);
   }
 });
 

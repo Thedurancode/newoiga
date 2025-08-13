@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Navigation from '@/react-app/components/Navigation';
 import Footer from '@/react-app/components/Footer';
 
