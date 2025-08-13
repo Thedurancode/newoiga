@@ -25,7 +25,7 @@ export default function Navigation() {
             <img 
               src="https://mocha-cdn.com/019889c0-e36b-78be-8a97-5e6e4fda143a/OIGA-EVENTS-LOGO.png" 
               alt="Oiga Events" 
-              className="h-14 md:h-20 w-auto"
+              className="h-20 md:h-24 w-auto"
             />
           </Link>
           
@@ -110,9 +110,10 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-800">
+        <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-800">
               <Link 
                 to="/" 
                 onClick={closeMobileMenu}
@@ -185,9 +186,8 @@ export default function Navigation() {
                 <Video size={20} />
                 <span className="font-medium">Videos</span>
               </Link>
-            </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

@@ -58,12 +58,12 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden min-h-[70vh] flex items-center">
+      <div className="relative overflow-hidden min-h-[70vh] flex items-center -mt-1 md:-mt-px">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <iframe
             src="https://www.youtube.com/embed/VNoq4LR1UzE?autoplay=1&mute=1&loop=1&playlist=VNoq4LR1UzE&start=40&controls=0&modestbranding=1"
-            className="absolute inset-0 w-full h-full object-cover scale-[2] md:scale-125 origin-center"
+            className="absolute -top-[3px] md:top-0 left-0 right-0 bottom-0 w-full h-full object-cover scale-[2] md:scale-125 origin-center"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen

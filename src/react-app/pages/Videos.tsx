@@ -28,7 +28,7 @@ const Videos = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 flex flex-col">
       <Navigation />
       
-      <div className="w-full max-w-7xl mx-auto px-4 py-8 flex-1">
+      <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-8 pt-[29px] flex-1">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent mb-2">
             Video Gallery

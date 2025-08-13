@@ -197,6 +197,22 @@ app.get("/api/events", async (c) => {
     FROM events e 
     JOIN venues v ON e.venue_id = v.id 
     WHERE datetime(e.start_date_time) >= datetime('now')
+    AND e.is_special = 0
+    ORDER BY e.start_date_time
+  `).all();
+  
+  return c.json(events.results);
+});
+
+// Get special events
+app.get("/api/events/special", async (c) => {
+  const db = c.env.DB;
+  const events = await db.prepare(`
+    SELECT e.*, v.name as venue_name, v.city as venue_city
+    FROM events e 
+    JOIN venues v ON e.venue_id = v.id 
+    WHERE datetime(e.start_date_time) >= datetime('now')
+    AND e.is_special = 1
     ORDER BY e.start_date_time
   `).all();
   
