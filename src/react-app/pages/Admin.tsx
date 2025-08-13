@@ -41,6 +41,7 @@ export default function AdminPage() {
   const [stats, setStats] = useState<Stats>({ totalEvents: 0, featuredEvents: 0, totalVenues: 0, upcomingEvents: 0 });
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'events' | 'venues'>('events');
+  const [showPastEvents, setShowPastEvents] = useState(false);
   
   // Event state
   const [editingEvent, setEditingEvent] = useState<number | null>(null);
@@ -135,31 +136,45 @@ export default function AdminPage() {
 
   const handleUpdateEvent = async (eventId: number) => {
     try {
+      const requestData = {
+        ...eventFormData,
+        is_featured: eventFormData.is_featured ? 1 : 0,
+        is_special: eventFormData.is_special ? 1 : 0
+      };
+      
+      console.log('Updating event with data:', requestData);
+      
       const response = await fetch(`/api/events/${eventId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...eventFormData,
-          is_featured: eventFormData.is_featured ? 1 : 0,
-          is_special: eventFormData.is_special ? 1 : 0
-        }),
+        body: JSON.stringify(requestData),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
       if (response.ok) {
+        const result = await response.json();
+        console.log('Update successful:', result);
         await fetchData();
         setEditingEvent(null);
         resetEventForm();
       } else {
+        console.error('Response not ok. Status:', response.status);
+        const responseText = await response.text();
+        console.error('Response text:', responseText);
+        
         try {
-          const errorData = await response.json();
-          console.error('Error updating event:', errorData);
+          const errorData = JSON.parse(responseText);
+          console.error('Parsed error data:', errorData);
           const errorMessage = errorData.error || errorData.message || JSON.stringify(errorData);
           alert('Error updating event: ' + errorMessage);
         } catch (parseError) {
           console.error('Error parsing error response:', parseError);
-          alert('Error updating event: Server returned an invalid response');
+          console.error('Raw response:', responseText);
+          alert('Error updating event: ' + responseText);
         }
       }
     } catch (error) {
@@ -355,6 +370,18 @@ export default function AdminPage() {
     });
   };
 
+  // Separate upcoming and past events
+  const now = new Date();
+  const upcomingEvents = events.filter(event => new Date(event.start_date_time) >= now)
+    .sort((a, b) => new Date(a.start_date_time).getTime() - new Date(b.start_date_time).getTime());
+  const pastEvents = events.filter(event => new Date(event.start_date_time) < now)
+    .sort((a, b) => new Date(b.start_date_time).getTime() - new Date(a.start_date_time).getTime());
+
+  const displayEvents = showPastEvents ? pastEvents : upcomingEvents;
+
+  // Helper function to check if event is past
+  const isEventPast = (event: Event) => new Date(event.start_date_time) < now;
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
@@ -548,32 +575,59 @@ export default function AdminPage() {
         {activeTab === 'events' && (
           <div className="w-full bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden">
             <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-700/50">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
-                    <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
+                      <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                    </div>
+                    <h2 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white">Event Management</h2>
                   </div>
-                  <h2 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white">Event Management</h2>
+                  <div className="text-xs sm:text-sm text-gray-400">
+                    {events.length} total events
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400">
-                  {events.length} total events
+                
+                {/* Toggle between upcoming and past events */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="text-sm text-gray-300">
+                      Showing: <span className="font-semibold text-white">
+                        {showPastEvents ? `Past Events (${pastEvents.length})` : `Upcoming Events (${upcomingEvents.length})`}
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowPastEvents(!showPastEvents)}
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      showPastEvents
+                        ? 'bg-blue-600 text-white hover:bg-blue-700'
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+                    }`}
+                  >
+                    {showPastEvents ? 'Show Upcoming' : 'Show Past Events'}
+                  </button>
                 </div>
               </div>
             </div>
 
-            {events.length === 0 ? (
+            {displayEvents.length === 0 ? (
               <div className="p-4 sm:p-6 lg:p-8 xl:p-12 text-center">
                 <Calendar className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-gray-500 mx-auto mb-3 sm:mb-4" />
-                <p className="text-gray-400 text-sm sm:text-base lg:text-lg">No events created yet</p>
-                <p className="text-gray-500 text-xs sm:text-sm">Click "Add Event" to get started</p>
+                <p className="text-gray-400 text-sm sm:text-base lg:text-lg">
+                  {showPastEvents ? 'No past events found' : 'No upcoming events found'}
+                </p>
+                <p className="text-gray-500 text-xs sm:text-sm">
+                  {showPastEvents ? 'Switch to upcoming events or create new events' : 'Click "Add Event" to get started'}
+                </p>
               </div>
             ) : (
               <>
                 {/* Mobile Card View */}
                 <div className="block sm:hidden">
                   <div className="space-y-3 p-3">
-                    {events.map((event) => (
-                      <div key={event.id} className="bg-gray-800/30 rounded-xl p-3 border border-gray-700/30">
+                    {displayEvents.map((event) => (
+                      <div key={event.id} className={`${isEventPast(event) ? 'bg-yellow-900/20 border-yellow-600/30' : 'bg-gray-800/30 border-gray-700/30'} rounded-xl p-3 border`}>
                         {editingEvent === event.id ? (
                           <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-3 border border-gray-600/50">
                             <EventForm 
@@ -633,7 +687,7 @@ export default function AdminPage() {
                               <div className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold ${
                                 new Date(event.start_date_time) > new Date()
                                   ? 'bg-blue-900/30 text-blue-400 border border-blue-500/30'
-                                  : 'bg-gray-700/50 text-gray-400 border border-gray-600/50'
+                                  : 'bg-yellow-900/30 text-yellow-400 border border-yellow-500/30'
                               }`}>
                                 {new Date(event.start_date_time) > new Date() ? 'Upcoming' : 'Past'}
                               </div>
@@ -676,8 +730,12 @@ export default function AdminPage() {
                       </tr>
                     </thead>
                   <tbody>
-                    {events.map((event, index) => (
-                      <tr key={event.id} className={`${index % 2 === 0 ? 'bg-gray-800/30' : 'bg-gray-700/20'} hover:bg-blue-900/20 transition-all duration-200 border-b border-gray-700/30`}>
+                    {displayEvents.map((event, index) => (
+                      <tr key={event.id} className={`${
+                        isEventPast(event) 
+                          ? 'bg-yellow-900/20 hover:bg-yellow-800/30 border-b border-yellow-600/30' 
+                          : `${index % 2 === 0 ? 'bg-gray-800/30' : 'bg-gray-700/20'} hover:bg-blue-900/20 border-b border-gray-700/30`
+                      } transition-all duration-200`}>
                         {editingEvent === event.id ? (
                             <td colSpan={6} className="p-3 sm:p-4 lg:p-6">
                               <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-3 sm:p-4 lg:p-6 border border-gray-600/50">
@@ -760,7 +818,7 @@ export default function AdminPage() {
                                 <div className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold w-fit ${
                                   new Date(event.start_date_time) > new Date()
                                     ? 'bg-blue-900/30 text-blue-400 border border-blue-500/30'
-                                    : 'bg-gray-700/50 text-gray-400 border border-gray-600/50'
+                                    : 'bg-yellow-900/30 text-yellow-400 border border-yellow-500/30'
                                 }`}>
                                   {new Date(event.start_date_time) > new Date() ? 'Upcoming' : 'Past'}
                                 </div>

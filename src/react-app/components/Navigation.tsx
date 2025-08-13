@@ -54,6 +54,17 @@ export default function Navigation() {
               <span>Events</span>
             </Link>
             <Link 
+              to="/videos" 
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                isActive('/videos') 
+                  ? 'bg-blue-900/50 text-blue-300' 
+                  : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
+              }`}
+            >
+              <Video size={20} />
+              <span>Videos</span>
+            </Link>
+            <Link 
               to="/venues" 
               className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
                 isActive('/venues') 
@@ -85,17 +96,6 @@ export default function Navigation() {
             >
               <Briefcase size={20} />
               <span>Work With Us</span>
-            </Link>
-            <Link 
-              to="/videos" 
-              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
-                isActive('/videos') 
-                  ? 'bg-blue-900/50 text-blue-300' 
-                  : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
-              }`}
-            >
-              <Video size={20} />
-              <span>Videos</span>
             </Link>
           </div>
 
@@ -139,6 +139,18 @@ export default function Navigation() {
                 <span className="font-medium">Events</span>
               </Link>
               <Link 
+                to="/videos" 
+                onClick={closeMobileMenu}
+                className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
+                  isActive('/videos') 
+                    ? 'bg-blue-900/50 text-blue-300' 
+                    : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
+                }`}
+              >
+                <Video size={20} />
+                <span className="font-medium">Videos</span>
+              </Link>
+              <Link 
                 to="/venues" 
                 onClick={closeMobileMenu}
                 className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
@@ -173,18 +185,6 @@ export default function Navigation() {
               >
                 <Briefcase size={20} />
                 <span className="font-medium">Work With Us</span>
-              </Link>
-              <Link 
-                to="/videos" 
-                onClick={closeMobileMenu}
-                className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
-                  isActive('/videos') 
-                    ? 'bg-blue-900/50 text-blue-300' 
-                    : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
-                }`}
-              >
-                <Video size={20} />
-                <span className="font-medium">Videos</span>
               </Link>
           </div>
         </div>

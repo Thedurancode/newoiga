@@ -114,22 +114,29 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-gradient-to-br from-orange-900/20 to-yellow-900/20 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 overflow-hidden transform hover:scale-105 border border-orange-500/30">
-                  {event.image_url && (
-                    <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-orange-400 to-yellow-400">
+                  <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-orange-400 to-yellow-400">
+                    {event.image_url ? (
                       <img 
                         src={event.image_url} 
                         alt={event.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-                      <div className="absolute top-4 right-4">
-                        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                          <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-                          SPECIAL
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-400/20 to-yellow-400/20">
+                        <div className="text-center text-orange-300">
+                          <Calendar size={48} className="mx-auto mb-2 opacity-50" />
+                          <p className="text-sm font-medium opacity-75">Event Image</p>
                         </div>
                       </div>
+                    )}
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                    <div className="absolute top-4 right-4">
+                      <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+                        <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+                        SPECIAL
+                      </div>
                     </div>
-                  )}
+                  </div>
                   
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors line-clamp-2">
@@ -199,16 +206,23 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden transform hover:scale-105 border border-gray-700">
-                  {event.image_url && (
-                    <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-blue-400 to-cyan-400">
+                  <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-blue-400 to-cyan-400">
+                    {event.image_url ? (
                       <img 
                         src={event.image_url} 
                         alt={event.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-                    </div>
-                  )}
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
+                        <div className="text-center text-blue-300">
+                          <Calendar size={48} className="mx-auto mb-2 opacity-50" />
+                          <p className="text-sm font-medium opacity-75">Event Image</p>
+                        </div>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                  </div>
                   
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
@@ -239,16 +253,20 @@ export default function Home() {
               >
                 <div className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-700 overflow-hidden">
                   <div className="flex">
-                    {event.image_url && (
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-400 to-cyan-400 relative overflow-hidden flex-shrink-0 rounded-lg">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-400 to-cyan-400 relative overflow-hidden flex-shrink-0 rounded-lg">
+                      {event.image_url ? (
                         <img 
                           src={event.image_url} 
                           alt={event.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-                      </div>
-                    )}
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
+                          <Calendar size={20} className="text-blue-300 opacity-50" />
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                    </div>
                     
                     <div className="flex-1 p-4 sm:p-6">
                       <div className="flex flex-col justify-between h-full gap-3">

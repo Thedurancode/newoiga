@@ -46,11 +46,12 @@ const CreateEventSchema = z.object({
   venue_id: z.number().int().positive(),
   start_date_time: z.string(),
   end_date_time: z.string().optional(),
-  price: z.number().positive().optional(),
-  image_url: z.string().url().optional(),
+  price: z.number().min(0).optional().nullable(),
+  image_url: z.string().optional(),
   image_file: z.any().optional(),
-  ticket_url: z.string().url().optional(),
-  is_featured: z.number().int().min(0).max(1).default(0)
+  ticket_url: z.string().optional(),
+  is_featured: z.number().int().min(0).max(1).default(0),
+  is_special: z.number().int().min(0).max(1).default(0)
 });
 
 const UpdateEventSchema = z.object({
@@ -59,10 +60,10 @@ const UpdateEventSchema = z.object({
   venue_id: z.number().int().positive().optional(),
   start_date_time: z.string().optional(),
   end_date_time: z.string().optional(),
-  price: z.number().positive().optional(),
-  image_url: z.string().url().optional(),
+  price: z.number().min(0).optional().nullable(),
+  image_url: z.string().optional(),
   image_file: z.any().optional(),
-  ticket_url: z.string().url().optional(),
+  ticket_url: z.string().optional(),
   is_featured: z.number().int().min(0).max(1).optional(),
   is_special: z.number().int().min(0).max(1).optional()
 });
@@ -320,7 +321,8 @@ app.post("/api/events", zValidator("json", CreateEventSchema), async (c) => {
     data.price || null,
     imageUrl || null,
     data.ticket_url || null,
-    data.is_featured
+    data.is_featured,
+    data.is_special || 0
   ).run();
   
   return c.json({ id: result.meta.last_row_id, ...data, image_url: imageUrl });
@@ -328,9 +330,12 @@ app.post("/api/events", zValidator("json", CreateEventSchema), async (c) => {
 
 // Update event
 app.put("/api/events/:id", zValidator("json", UpdateEventSchema), async (c) => {
-  const db = c.env.DB;
-  const eventId = c.req.param("id");
-  const data = c.req.valid("json");
+  try {
+    const db = c.env.DB;
+    const eventId = c.req.param("id");
+    const data = c.req.valid("json");
+    
+    console.log('Update event request:', { eventId, data });
   
   // Check if event exists and get current data
   const existingEvent = await db.prepare("SELECT * FROM events WHERE id = ?").bind(eventId).first();
@@ -360,13 +365,14 @@ app.put("/api/events/:id", zValidator("json", UpdateEventSchema), async (c) => {
     price: data.price ?? existingEvent.price,
     image_url: imageUrl,
     ticket_url: data.ticket_url ?? existingEvent.ticket_url,
-    is_featured: data.is_featured ?? existingEvent.is_featured
+    is_featured: data.is_featured ?? existingEvent.is_featured,
+    is_special: data.is_special ?? existingEvent.is_special
   };
   
   const result = await db.prepare(`
     UPDATE events 
     SET title = ?, description = ?, venue_id = ?, start_date_time = ?, end_date_time = ?, 
-        price = ?, image_url = ?, ticket_url = ?, is_featured = ?, updated_at = datetime('now')
+        price = ?, image_url = ?, ticket_url = ?, is_featured = ?, is_special = ?, updated_at = datetime('now')
     WHERE id = ?
   `).bind(
     updateData.title,
@@ -378,10 +384,15 @@ app.put("/api/events/:id", zValidator("json", UpdateEventSchema), async (c) => {
     updateData.image_url,
     updateData.ticket_url,
     updateData.is_featured,
+    updateData.is_special,
     eventId
   ).run();
   
-  return c.json({ success: true, changes: result.meta.changes });
+    return c.json({ success: true, changes: result.meta.changes });
+  } catch (error) {
+    console.error('Error in update event endpoint:', error);
+    return c.json({ error: 'Internal server error', details: error.message }, 500);
+  }
 });
 
 // Delete event

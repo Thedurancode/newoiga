@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Calendar, MapPin, Home, Mail, Phone, ExternalLink, Users, Briefcase } from "lucide-react";
+import { Calendar, MapPin, Home, Mail, Phone, ExternalLink, Users, Briefcase, Video } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -66,6 +66,15 @@ export default function Footer() {
                 >
                   <Calendar size={16} />
                   <span>Events</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/videos" 
+                  className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
+                >
+                  <Video size={16} />
+                  <span>Videos</span>
                 </Link>
               </li>
               <li>

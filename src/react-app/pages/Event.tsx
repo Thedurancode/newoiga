@@ -87,24 +87,28 @@ export default function EventPage() {
 
         {/* Event Header */}
         <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-700">
-          {event.image_url && (
-            <div className="h-80 bg-gradient-to-r from-blue-400 to-cyan-400 relative">
+          <div className="h-80 bg-gradient-to-r from-blue-400 to-cyan-400 relative">
+            {event.image_url ? (
               <img 
                 src={event.image_url} 
                 alt={event.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">{event.title}</h1>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
+                <div className="text-center text-blue-300">
+                  <Calendar size={64} className="mx-auto mb-4 opacity-50" />
+                  <p className="text-lg font-medium opacity-75">Event Image</p>
+                </div>
               </div>
+            )}
+            <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">{event.title}</h1>
             </div>
-          )}
+          </div>
           
           <div className="p-8">
-            {!event.image_url && (
-              <h1 className="text-4xl font-bold text-white mb-6">{event.title}</h1>
-            )}
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               <div className="flex items-start">
