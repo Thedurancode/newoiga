@@ -105,7 +105,7 @@ export default function EventPage() {
               <img 
                 src={event.image_url} 
                 alt={event.title}
-                className="w-full aspect-square object-cover rounded-xl shadow-lg"
+                className="w-full object-contain rounded-xl shadow-lg max-h-96"
               />
             </div>
           </div>
@@ -190,6 +190,8 @@ export default function EventPage() {
               </Link>
             </div>
           </div>
+        </div>
+        
         </div>
         
         <Footer />

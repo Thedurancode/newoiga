@@ -287,6 +287,124 @@ app.post("/api/events/upload-image", async (c) => {
   }
 });
 
+// Upload venue image
+app.post("/api/venues/upload-image", async (c) => {
+  try {
+    if (!c.req.header('content-type')?.includes('multipart/form-data')) {
+      return c.json({ error: 'Invalid content type' }, 400);
+    }
+
+    const formData = await c.req.formData();
+    const fileEntry = formData.get('file');
+    
+    if (!fileEntry) {
+      return c.json({ error: 'No file uploaded' }, 400);
+    }
+
+    if (typeof fileEntry !== 'object' || !('stream' in fileEntry)) {
+      return c.json({ error: 'Invalid file format' }, 400);
+    }
+
+    const file = fileEntry as File;
+    
+    if (typeof file !== 'object' || !('name' in file) || !('type' in file)) {
+      return c.json({ error: 'Invalid file format - missing required properties' }, 400);
+    }
+
+    if (!isValidImage(file)) {
+      return c.json({ error: 'Invalid image type' }, 400);
+    }
+
+    const filename = generateUniqueFilename(file.name);
+    await c.env.EVENT_IMAGES.put(filename, file.stream(), {
+      httpMetadata: {
+        contentType: file.type
+      }
+    });
+
+    const imageUrl = `${getBaseUrl(c)}/api/venues/images/${filename}`;
+    return c.json({ url: imageUrl });
+  } catch (error) {
+    console.error('Venue image upload error:', error);
+    return c.json({ error: 'Internal server error during file upload' }, 500);
+  }
+});
+
+// Upload venue logo
+app.post("/api/venues/upload-logo", async (c) => {
+  try {
+    if (!c.req.header('content-type')?.includes('multipart/form-data')) {
+      return c.json({ error: 'Invalid content type' }, 400);
+    }
+
+    const formData = await c.req.formData();
+    const fileEntry = formData.get('file');
+    
+    if (!fileEntry) {
+      return c.json({ error: 'No file uploaded' }, 400);
+    }
+
+    if (typeof fileEntry !== 'object' || !('stream' in fileEntry)) {
+      return c.json({ error: 'Invalid file format' }, 400);
+    }
+
+    const file = fileEntry as File;
+    
+    if (typeof file !== 'object' || !('name' in file) || !('type' in file)) {
+      return c.json({ error: 'Invalid file format - missing required properties' }, 400);
+    }
+
+    if (!isValidImage(file)) {
+      return c.json({ error: 'Invalid image type' }, 400);
+    }
+
+    const filename = generateUniqueFilename(file.name);
+    await c.env.EVENT_IMAGES.put(filename, file.stream(), {
+      httpMetadata: {
+        contentType: file.type
+      }
+    });
+
+    const imageUrl = `${getBaseUrl(c)}/api/venues/logos/${filename}`;
+    return c.json({ url: imageUrl });
+  } catch (error) {
+    console.error('Venue logo upload error:', error);
+    return c.json({ error: 'Internal server error during file upload' }, 500);
+  }
+});
+
+// Get venue image
+app.get("/api/venues/images/:filename", async (c) => {
+  const filename = c.req.param("filename");
+  const object = await c.env.EVENT_IMAGES.get(filename);
+  
+  if (!object) {
+    return c.notFound();
+  }
+
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("cache-control", "public, max-age=31536000");
+
+  return new Response(object.body, { headers });
+});
+
+// Get venue logo
+app.get("/api/venues/logos/:filename", async (c) => {
+  const filename = c.req.param("filename");
+  const object = await c.env.EVENT_IMAGES.get(filename);
+  
+  if (!object) {
+    return c.notFound();
+  }
+
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("cache-control", "public, max-age=31536000");
+
+  return new Response(object.body, { headers });
+});
+
 // Get event image
 app.get("/api/events/images/:filename", async (c) => {
   const filename = c.req.param('filename');

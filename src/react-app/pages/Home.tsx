@@ -114,12 +114,12 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-gradient-to-br from-orange-900/20 to-yellow-900/20 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 overflow-hidden transform hover:scale-105 border border-orange-500/30">
-                  <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-orange-400 to-yellow-400">
+                  <div className="aspect-[4/5] relative overflow-hidden bg-gradient-to-br from-orange-400 to-yellow-400">
                     {event.image_url ? (
                       <img 
                         src={event.image_url} 
                         alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-400/20 to-yellow-400/20">
@@ -206,12 +206,12 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden transform hover:scale-105 border border-gray-700">
-                  <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-blue-400 to-cyan-400">
+                  <div className="aspect-[4/5] relative overflow-hidden bg-gradient-to-br from-blue-400 to-cyan-400">
                     {event.image_url ? (
                       <img 
                         src={event.image_url} 
                         alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
