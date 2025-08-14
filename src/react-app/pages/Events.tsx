@@ -118,12 +118,7 @@ export default function Events() {
                             </div>
                           </div>
                           
-                          {event.price && (
-                            <div className="text-right">
-                              <div className="text-sm text-gray-400">Starting at</div>
-                              <div className="text-2xl font-bold text-green-600">${event.price}</div>
-                            </div>
-                          )}
+
                         </div>
                         
                         {event.description && (
@@ -133,14 +128,7 @@ export default function Events() {
                         )}
                       </div>
                       
-                      <div className="flex justify-end items-center">
-                        <Link 
-                          to={`/venues/${event.venue_id}`}
-                          className="text-blue-400 hover:text-blue-300 font-semibold text-sm"
-                        >
-                          View Venue →
-                        </Link>
-                      </div>
+
                     </div>
                   </div>
                   </div>
