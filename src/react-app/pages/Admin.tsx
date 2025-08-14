@@ -671,13 +671,13 @@ export default function AdminPage() {
                             </div>
                             
                             <div className="flex flex-wrap gap-1">
-                              {event.is_featured && (
+                              {Boolean(event.is_featured) && (
                                 <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-gradient-to-r from-purple-900/30 to-pink-900/30 text-purple-300 border border-purple-500/30">
                                   <Star size={8} className="mr-1" />
                                   Featured
                                 </div>
                               )}
-                              {event.is_special && (
+                              {Boolean(event.is_special) && (
                                 <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-gradient-to-r from-orange-900/30 to-yellow-900/30 text-orange-300 border border-orange-500/30">
                                   <Star size={8} className="mr-1" />
                                   Special
@@ -811,13 +811,13 @@ export default function AdminPage() {
                             </td>
                             <td className="px-2 sm:px-3 lg:px-6 py-2 sm:py-3 lg:py-4 hidden md:table-cell">
                               <div className="flex flex-col space-y-1">
-                                {event.is_featured && (
+                                {Boolean(event.is_featured) && (
                                   <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-gradient-to-r from-purple-900/30 to-pink-900/30 text-purple-300 border border-purple-500/30 w-fit">
                                     <Star size={8} className="mr-1" />
                                     Featured
                                   </div>
                                 )}
-                                {event.is_special && (
+                                {Boolean(event.is_special) && (
                                   <div className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-gradient-to-r from-orange-900/30 to-yellow-900/30 text-orange-300 border border-orange-500/30 w-fit">
                                     <Star size={8} className="mr-1" />
                                     Special
