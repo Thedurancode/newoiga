@@ -85,10 +85,9 @@ export default function Events() {
                           className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
-                          <div className="text-center text-blue-300">
-                            <Calendar size={48} className="mx-auto mb-2 opacity-50" />
-                            <p className="text-sm font-medium opacity-75">Event Image</p>
+                        <div className="w-full h-full flex items-center justify-center bg-transparent">
+                          <div className="text-center text-gray-400">
+                            <p className="text-lg font-medium">No Flyer Available</p>
                           </div>
                         </div>
                       )}

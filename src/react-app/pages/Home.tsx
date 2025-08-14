@@ -122,10 +122,9 @@ export default function Home() {
                         className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-400/20 to-yellow-400/20">
-                        <div className="text-center text-orange-300">
-                          <Calendar size={48} className="mx-auto mb-2 opacity-50" />
-                          <p className="text-sm font-medium opacity-75">Event Image</p>
+                      <div className="w-full h-full flex items-center justify-center bg-transparent">
+                        <div className="text-center text-gray-400">
+                          <p className="text-lg font-medium">No Flyer Available</p>
                         </div>
                       </div>
                     )}
@@ -214,10 +213,9 @@ export default function Home() {
                         className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
-                        <div className="text-center text-blue-300">
-                          <Calendar size={48} className="mx-auto mb-2 opacity-50" />
-                          <p className="text-sm font-medium opacity-75">Event Image</p>
+                      <div className="w-full h-full flex items-center justify-center bg-transparent">
+                        <div className="text-center text-gray-400">
+                          <p className="text-lg font-medium">No Flyer Available</p>
                         </div>
                       </div>
                     )}
@@ -258,11 +256,13 @@ export default function Home() {
                         <img 
                           src={event.image_url} 
                           alt={event.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
-                          <Calendar size={20} className="text-blue-300 opacity-50" />
+                        <div className="w-full h-full flex items-center justify-center bg-transparent">
+                          <div className="text-center text-gray-400">
+                            <p className="text-xs font-medium">No Flyer</p>
+                          </div>
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
