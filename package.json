@@ -1,5 +1,5 @@
 {
-  "name": "mocha-app",
+  "name": "oiga-events",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,8 +17,7 @@
     "@cloudflare/vite-plugin": "^1.11.2",
     "@cloudflare/workers-types": "^4.20250812.0",
     "@eslint/js": "9.25.1",
-    "@getmocha/users-service": "^0.0.4",
-    "@getmocha/vite-plugins": "^3.0.13",
+
     "@types/node": "22.14.1",
     "@types/react": "19.0.10",
     "@types/react-dom": "^19.0.4",
