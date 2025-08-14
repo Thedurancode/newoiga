@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router';
-import { MapPin, Phone, ExternalLink, Calendar, ArrowLeft, Ticket } from 'lucide-react';
+import { MapPin, Calendar, ArrowLeft, Ticket } from 'lucide-react';
 import Navigation from '@/react-app/components/Navigation';
 import Footer from '@/react-app/components/Footer';
 import type { Event } from '@/shared/types';
@@ -73,10 +73,23 @@ export default function EventPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
-      <Navigation />
+    <div className="min-h-screen bg-black flex flex-col relative">
+      {/* Background Image */}
+      {event.image_url && (
+        <div className="fixed inset-0 z-0">
+          <img 
+            src={event.image_url} 
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-90"></div>
+        </div>
+      )}
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+      <div className="relative z-10">
+        <Navigation />
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
         <Link 
           to="/events" 
           className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6"
@@ -178,11 +191,9 @@ export default function EventPage() {
             </div>
           </div>
         </div>
-
-
+        
+        <Footer />
       </div>
-      
-      <Footer />
     </div>
   );
 }
