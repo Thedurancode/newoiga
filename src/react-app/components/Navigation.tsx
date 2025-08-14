@@ -22,11 +22,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center py-2">
-            <div className="h-16 md:h-20 flex items-center">
-              <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                OIGA EVENTS
-              </span>
-            </div>
+            <img 
+              src="https://mocha-cdn.com/019889c0-e36b-78be-8a97-5e6e4fda143a/OIGA-EVENTS-LOGO.png" 
+              alt="Oiga Events" 
+              className="h-16 md:h-20 w-auto"
+            />
           </Link>
           
           {/* Desktop Navigation */}
