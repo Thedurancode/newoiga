@@ -85,30 +85,24 @@ export default function EventPage() {
           Back to Events
         </Link>
 
-        {/* Event Header */}
-        <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-700">
-          <div className="h-80 bg-gradient-to-r from-blue-400 to-cyan-400 relative">
-            {event.image_url ? (
+        {/* Event Flyer */}
+        {event.image_url && (
+          <div className="mb-8 flex justify-center">
+            <div className="max-w-md w-full">
               <img 
                 src={event.image_url} 
                 alt={event.title}
-                className="w-full h-full object-cover"
+                className="w-full aspect-square object-cover rounded-xl shadow-lg"
               />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-cyan-400/20">
-                <div className="text-center text-blue-300">
-                  <Calendar size={64} className="mx-auto mb-4 opacity-50" />
-                  <p className="text-lg font-medium opacity-75">Event Image</p>
-                </div>
-              </div>
-            )}
-            <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">{event.title}</h1>
             </div>
           </div>
-          
+        )}
+
+        {/* Event Header */}
+        <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-700">
           <div className="p-8">
+            <h1 className="text-4xl font-bold text-white mb-6">{event.title}</h1>
+
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               <div className="flex items-start">
@@ -185,57 +179,7 @@ export default function EventPage() {
           </div>
         </div>
 
-        {/* Venue Information */}
-        <div className="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
-          <h3 className="text-xl font-bold text-white mb-4">Venue Information</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <h4 className="font-semibold text-white">{event.venue_name}</h4>
-                {(event as any).venue_logo_url && (
-                  <div className="bg-white rounded-lg p-1.5 shadow-lg">
-                    <img 
-                      src={(event as any).venue_logo_url} 
-                      alt={`${event.venue_name} logo`}
-                      className="h-6 w-auto object-contain"
-                    />
-                  </div>
-                )}
-              </div>
-              {event.venue_address && event.venue_city && (
-                <div className="flex items-start text-gray-400 mb-3">
-                  <MapPin size={16} className="mr-2 mt-1 flex-shrink-0" />
-                  <div className="text-sm">
-                    <div>{event.venue_address}</div>
-                    <div>{event.venue_city}</div>
-                  </div>
-                </div>
-              )}
-            </div>
-            
-            <div>
-              {event.venue_phone && (
-                <div className="flex items-center text-gray-400 mb-3">
-                  <Phone size={16} className="mr-2" />
-                  <span className="text-sm">{event.venue_phone}</span>
-                </div>
-              )}
-              
-              {event.venue_website && (
-                <a 
-                  href={event.venue_website} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold text-sm"
-                >
-                  <ExternalLink size={16} className="mr-2" />
-                  Visit Venue Website
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
+
       </div>
       
       <Footer />
