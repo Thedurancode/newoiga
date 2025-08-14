@@ -77,7 +77,7 @@ export default function Events() {
               >
                 <div className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden border border-gray-700">
                   <div className="md:flex">
-                    <div className="md:w-1/3 md:min-h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden flex items-center justify-center">
+                    <div className="md:w-1/3 md:min-h-64 bg-black relative overflow-hidden flex items-center justify-center">
                       {event.image_url ? (
                         <img
                           src={event.image_url}

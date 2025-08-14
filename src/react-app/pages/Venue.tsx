@@ -77,7 +77,7 @@ export default function VenuePage() {
         {/* Venue Header */}
         <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-700">
           {venue.image_url && (
-            <div className="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative">
+            <div className="h-64 bg-black relative">
               <img 
                 src={venue.image_url} 
                 alt={venue.name}

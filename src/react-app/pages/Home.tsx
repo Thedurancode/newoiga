@@ -134,12 +134,12 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-gradient-to-br from-orange-900/20 to-yellow-900/20 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 overflow-hidden transform hover:scale-105 border border-orange-500/30">
-                  <div className="aspect-[4/5] relative overflow-hidden bg-gradient-to-br from-orange-400 to-yellow-400">
+                  <div className="aspect-[4/5] relative overflow-hidden bg-black">
                     {event.image_url ? (
                       <img
                         src={event.image_url}
                         alt={event.title}
-                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-transparent">
@@ -189,8 +189,8 @@ export default function Home() {
             <button
               onClick={() => setViewMode('grid')}
               className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all ${viewMode === 'grid'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-gray-400 hover:text-white hover:bg-gray-700'
                 }`}
             >
               <Grid size={18} />
@@ -199,8 +199,8 @@ export default function Home() {
             <button
               onClick={() => setViewMode('list')}
               className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all ${viewMode === 'list'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-gray-400 hover:text-white hover:bg-gray-700'
                 }`}
             >
               <List size={18} />
@@ -223,7 +223,7 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden transform hover:scale-105 border border-gray-700">
-                  <div className="aspect-[4/5] relative overflow-hidden bg-gradient-to-br from-blue-400 to-cyan-400">
+                  <div className="aspect-[4/5] relative overflow-hidden bg-black">
                     {event.image_url ? (
                       <img
                         src={event.image_url}
@@ -269,7 +269,7 @@ export default function Home() {
               >
                 <div className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-700 overflow-hidden">
                   <div className="flex">
-                    <div className="w-32 h-32 sm:w-40 sm:h-32 bg-gradient-to-br from-blue-400 to-cyan-400 relative overflow-hidden flex-shrink-0 rounded-lg">
+                    <div className="w-32 h-32 sm:w-40 sm:h-32 bg-black relative overflow-hidden flex-shrink-0 rounded-lg">
                       {event.image_url ? (
                         <img
                           src={event.image_url}

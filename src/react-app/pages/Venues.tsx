@@ -59,7 +59,7 @@ export default function Venues() {
                 className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden group border border-gray-700"
               >
                 {venue.image_url && (
-                  <div className="h-48 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                  <div className="h-48 bg-black relative overflow-hidden">
                     <img
                       src={venue.image_url}
                       alt={venue.name}
