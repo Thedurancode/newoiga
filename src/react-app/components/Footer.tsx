@@ -18,26 +18,26 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
-              Discover amazing events and venues in your city. From concerts to conferences, 
+              Discover amazing events and venues in your city. From concerts to conferences,
               we connect you with unforgettable experiences.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-lg hover:bg-gray-800"
                 aria-label="Twitter"
               >
                 <ExternalLink size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-lg hover:bg-gray-800"
                 aria-label="Facebook"
               >
                 <ExternalLink size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-blue-400 transition-colors p-2 rounded-lg hover:bg-gray-800"
                 aria-label="Instagram"
               >
@@ -51,8 +51,8 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
                 >
                   <Home size={16} />
@@ -60,8 +60,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/events" 
+                <Link
+                  to="/events"
                   className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
                 >
                   <Calendar size={16} />
@@ -69,8 +69,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/videos" 
+                <Link
+                  to="/videos"
                   className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
                 >
                   <Video size={16} />
@@ -78,8 +78,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/venues" 
+                <Link
+                  to="/venues"
                   className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
                 >
                   <MapPin size={16} />
@@ -87,8 +87,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/about" 
+                <Link
+                  to="/about"
                   className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
                 >
                   <Users size={16} />
@@ -96,8 +96,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/work-with-us" 
+                <Link
+                  to="/work-with-us"
                   className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"
                 >
                   <Briefcase size={16} />
@@ -139,20 +139,20 @@ export default function Footer() {
               © {currentYear} OigaEvents. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
               >
                 Privacy Policy
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
               >
                 Terms of Service
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
               >
                 Support

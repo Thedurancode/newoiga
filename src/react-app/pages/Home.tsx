@@ -9,7 +9,7 @@ export default function Home() {
   const [featuredEvents, setFeaturedEvents] = useState<Event[]>([]);
   const [specialEvents, setSpecialEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
   useEffect(() => {
     fetchEvents();
@@ -103,7 +103,7 @@ export default function Home() {
 
       {/* Special Events */}
       {specialEvents.length > 0 && (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">Special Events</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -161,7 +161,7 @@ export default function Home() {
       )}
 
       {/* Featured Events */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
           <h2 className="text-3xl font-bold text-white">Upcoming Events</h2>
           
@@ -253,7 +253,7 @@ export default function Home() {
               >
                 <div className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-700 overflow-hidden">
                   <div className="flex">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-400 to-cyan-400 relative overflow-hidden flex-shrink-0 rounded-lg">
+                    <div className="w-32 h-32 sm:w-40 sm:h-32 bg-gradient-to-br from-blue-400 to-cyan-400 relative overflow-hidden flex-shrink-0 rounded-lg">
                       {event.image_url ? (
                         <img 
                           src={event.image_url} 
@@ -269,23 +269,19 @@ export default function Home() {
                     </div>
                     
                     <div className="flex-1 p-4 sm:p-6">
-                      <div className="flex flex-col h-full">
-                        <div>
-                          <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-1">
-                            {event.title}
-                          </h3>
-                          
-                          <div className="flex flex-col gap-1 text-sm text-gray-400 mb-3">
-                            <div className="flex items-center">
-                              <MapPin size={14} className="mr-2 flex-shrink-0" />
-                              <span className="truncate">{event.venue_name}</span>
-                            </div>
-                            
-                            <div className="flex items-center">
-                              <Clock size={14} className="mr-2 flex-shrink-0" />
-                              <span>{formatDate(event.start_date_time)}</span>
-                            </div>
-                          </div>
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-1">
+                        {event.title}
+                      </h3>
+                      
+                      <div className="flex flex-col gap-1 text-sm text-gray-400">
+                        <div className="flex items-center">
+                          <MapPin size={14} className="mr-2 flex-shrink-0" />
+                          <span className="truncate">{event.venue_name}</span>
+                        </div>
+                        
+                        <div className="flex items-center">
+                          <Clock size={14} className="mr-2 flex-shrink-0" />
+                          <span>{formatDate(event.start_date_time)}</span>
                         </div>
                       </div>
                     </div>
